@@ -1,0 +1,2 @@
+c48074d3a632ec534de324743321953525e89c401bd1fc3b7405defd932170e3 *dsh-global-search-1.1.9.tgz
+eefaca55c0a63e14f95cfe6fcb525c9a62845e2714868d46e85ebf9b90048f42 *dsh-global-search-1.1.9-github.zip

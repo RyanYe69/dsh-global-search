@@ -1,0 +1,58 @@
+{
+  "name": "dsh-global-search",
+  "version": "1.1.9",
+  "type": "module",
+  "description": "Google search for DeepSeek Harness through your own free SERP key, with a composer switch, a settings page, per-turn quota tracking, and a Bing international-index fallback. No proxy, no bundled credentials, no system changes.",
+  "license": "MIT",
+  "author": "Ryan",
+  "icon": "icon.svg",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "dsh-bundle",
+    "search",
+    "web",
+    "google",
+    "deepseek-harness"
+  ],
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "lib/channels.js",
+    "lib/google.js",
+    "lib/log.js",
+    "lib/state.js",
+    "lib/residue.js",
+    "cordis.patch.yml",
+    "icon.svg",
+    "install.mjs",
+    "uninstall.mjs",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "test": "node tools/test-unit.mjs && node tools/test-host.mjs && node tools/test-client.mjs && node tools/test-residue.mjs",
+    "pack": "npm pack --pack-destination ."
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-settings"
+      ]
+    }
+  }
+}

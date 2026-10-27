@@ -1,0 +1,25 @@
+# dsh-global-search — bundle patch layer.
+#
+# Two rows, both reversible: deleting this package's bundle entry drops the whole
+# layer, the `web` row falls back to its shipped `{}` config (provider auto-select)
+# and the native DeepSeek search provider takes over again.
+#
+# 1. insert: this plugin's own Host row.
+# 2. override: point the web service's provider selectors at the id this plugin
+#    registers. Nothing else about the `web` row changes; an override replaces the
+#    complete config, the shipped config is `{}`, so these two keys are the entire
+#    difference.
+#
+# There is deliberately no `mode`, `tunnel` or `proxy` key: nothing this plugin does
+# touches system networking, and the Google channel is configured at runtime from
+# the settings page (a key is never written into the profile).
+- insert:
+    - id: global-search
+      name: 'dsh-global-search'
+      config:
+        maxResults: 10
+- id: web
+  name: '@deepseek-ai/dsh-web'
+  config:
+    searchProvider: dsh-global-search
+    fetchProvider: dsh-global-search
